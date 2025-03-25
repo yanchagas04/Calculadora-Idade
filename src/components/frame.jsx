@@ -4,7 +4,7 @@ import React from "react"
 import arrow from "../assets/arrow.svg"
 
 export default function Frame(){
-    const [data, setData] = React.useState({dia: 0, mes: 0, ano: 0})
+    const [data, setData] = React.useState({dia: '--', mes: '--', ano: '--'})
     const [erroAno, setErroAno] = React.useState({"state": false, "message": ""})
     const [erroMes, setErroMes] = React.useState({"state": false, "message": ""})
     const [erroDia, setErroDia] = React.useState({"state": false, "message": ""})
@@ -71,7 +71,7 @@ export default function Frame(){
             setErroMes(erros.mes)
             setErroDia(erros.dia)
             setErroData(erros.data)
-            setData({dia: 0, mes: 0, ano: 0})
+            setData({dia: '--', mes: '--', ano: '--'})
         } else {
     
             let anos = currentData.getFullYear() - ano;
