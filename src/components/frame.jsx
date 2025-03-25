@@ -1,6 +1,7 @@
 import Input from "./inputs/input"
 import Timer from "./timer"
 import React from "react"
+import arrow from "../assets/arrow.svg"
 
 export default function Frame(){
     const [data, setData] = React.useState({dia: 0, mes: 0, ano: 0})
@@ -103,7 +104,7 @@ export default function Frame(){
             {erroData.state && <p className="text-light-red-color text-[0.6rem] font-bold sm:w-7/10 w-full text-center">{erroData.message}</p>}
             <div className="flex flex-row items-center w-full h-fit">
                 <div className="bg-gray-300 opacity-50 h-[1px] w-full"></div>
-                <div className="flex flex-row justify-center items-center bg-[hsl(259,100%,65%)] hover:bg-black ease-in-out transition-all duration-300 rounded-full p-2 h-12 w-12 aspect-square cursor-pointer" onClick={func}><img src="public/icon-arrow.svg" className="aspect-square w-8 h-8" alt="" /></div>
+                <div className="flex flex-row justify-center items-center bg-[hsl(259,100%,65%)] hover:bg-black ease-in-out transition-all duration-300 rounded-full p-2 h-12 w-12 aspect-square cursor-pointer" onClick={func}><img src={arrow} className="aspect-square w-8 h-8" alt="" /></div>
             </div>
             <Timer years={data.ano} months={data.mes} days={data.dia}/>
         </div>
