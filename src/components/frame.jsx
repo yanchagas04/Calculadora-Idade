@@ -26,45 +26,9 @@ export default function Frame(){
         setErroDia({"state": false, "message": ""})
         setErroData({"state": false, "message": ""})
 
-        if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
-            if (isNaN(dia)) {
-                erros.dia = {"state": true, "message": "Insira um dia valido"}
-            }
-            if (isNaN(mes)) {
-                erros.mes = {"state": true, "message": "Insira um mês valido"}
-            }
-            if (isNaN(ano)) {
-                erros.ano = {"state": true, "message": "Insira um ano valido"}
-            }
-        } else if (ano === "" || mes === "" || dia === "") {
-            if (dia === "") {
-                erros.dia = {"state": true, "message": "Campo obrigatório"}
-            }
-            if (mes === "") {
-                erros.mes = {"state": true, "message": "Campo obrigatório"}
-            }
-            if (ano === "") {
-                erros.ano = {"state": true, "message": "Campo obrigatório"}
-            }
-        } else {
-            if (ano > currentData.getFullYear() || ano < 1) {
-                erros.ano = {"state": true, "message": "Insira um ano válido"}
-            } else if (mes < 1 || mes > 12) {
-                erros.mes = {"state": true, "message": "Insira um mês valido"}
-            } else if (dia < 1 || dia > 31) {
-                erros.dia = {"state": true, "message": "Insira um dia valido"}
-            }
-        }
+        verifySintax(dia, mes, ano, erros)
         
-        const meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        const meses_bisextos = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        if (ano % 4 === 0 && (ano % 100 !== 0 || ano % 400 === 0)) {
-            if (dia > meses_bisextos[mes - 1]) {
-                erros.data = {"state": true, "message": "Insira uma data válida"}   
-            }
-        } else if (dia > meses[mes - 1]) {
-            erros.data = {"state": true, "message": "Insira uma data válida"}   
-        }
+        verifyWrongDates(ano, dia, mes, erros)
 
         if (erros.ano.state || erros.mes.state || erros.dia.state || erros.data.state) {
             setErroAno(erros.ano)
@@ -95,6 +59,7 @@ export default function Frame(){
             })
         }
     }
+    
     return (
         <div className="w-9/10 sm:w-7/10 lg:w-1/2  h-fit flex flex-col p-8 gap-2 sm:gap-1 shadow-2xl bg-white rounded-l-xl rounded-tr-xl rounded-br-[6rem]">
             <div className="flex flex-row gap-1 sm:w-7/10 w-full sm:p-0 p-4">
@@ -119,4 +84,48 @@ export default function Frame(){
             <Timer years={data.ano} months={data.mes} days={data.dia}/>
         </div>
     )
+
+    function verifyWrongDates(ano, dia, mes, erros) {
+        const meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        const meses_bisextos = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if (ano % 4 === 0 && (ano % 100 !== 0 || ano % 400 === 0)) {
+            if (dia > meses_bisextos[mes - 1]) {
+                erros.data = { "state": true, "message": "Insira uma data válida" }
+            }
+        } else if (dia > meses[mes - 1]) {
+            erros.data = { "state": true, "message": "Insira uma data válida" }
+        }
+    }
+
+    function verifySintax(dia, mes, ano, erros) {
+        if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
+            if (isNaN(dia)) {
+                erros.dia = { "state": true, "message": "Insira um dia valido" }
+            }
+            if (isNaN(mes)) {
+                erros.mes = { "state": true, "message": "Insira um mês valido" }
+            }
+            if (isNaN(ano)) {
+                erros.ano = { "state": true, "message": "Insira um ano valido" }
+            }
+        } else if (ano === "" || mes === "" || dia === "") {
+            if (dia === "") {
+                erros.dia = { "state": true, "message": "Campo obrigatório" }
+            }
+            if (mes === "") {
+                erros.mes = { "state": true, "message": "Campo obrigatório" }
+            }
+            if (ano === "") {
+                erros.ano = { "state": true, "message": "Campo obrigatório" }
+            }
+        } else {
+            if (ano > currentData.getFullYear() || ano < 1) {
+                erros.ano = { "state": true, "message": "Insira um ano válido" }
+            } else if (mes < 1 || mes > 12) {
+                erros.mes = { "state": true, "message": "Insira um mês valido" }
+            } else if (dia < 1 || dia > 31) {
+                erros.dia = { "state": true, "message": "Insira um dia valido" }
+            }
+        }
+    }
 }
