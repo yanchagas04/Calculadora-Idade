@@ -1,10 +1,11 @@
 import './App.css'
+import Frame from './components/frame'
 
 function App() {
   return (
     <>
-      <div className='w-screen h-screen bg-slate-900 flex justify-center items-center'>
-        <h1 className='text-slate-50 text-2xl'>Calculadora Idade</h1>
+      <div className='w-screen h-screen bg-light-grey-color flex flex-col justify-center items-center'>
+        <Frame/>
       </div>
     </>
   )

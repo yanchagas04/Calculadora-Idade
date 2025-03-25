@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+.font-poppins {
+    font-family: 'Poppins';
+}
+
+.text-purple-color {
+    color: hsl(259, 100%, 65%);
+}
+
+.bg-purple-color {
+    background-color: hsl(259, 100%, 65%);
+}
+
+.text-light-red-color {
+    color: hsl(0, 100%, 67%);
+}
+
+.text-white-color {
+    color: hsl(0, 0%, 100%);
+}
+
+.text-off-white-color {
+    color: hsl(0, 0%, 94%);
+}
+
+.bg-light-grey-color {
+    background-color: hsl(0, 0%, 86%);
+}
+
+.text-smokey-grey-color {
+    color: hsl(0, 1%, 44%);
+}
+
+.text-off-black-color {
+    color: hsl(0, 0%, 8%);
+}
