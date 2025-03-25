@@ -86,7 +86,7 @@ export default function Frame(){
         }
     }
     return (
-        <div className="w-9/10 sm:w-1/2 h-fit flex flex-col p-8 gap-2 sm:gap-1 bg-white rounded-l-xl rounded-tr-xl rounded-br-[6rem]">
+        <div className="w-9/10 sm:w-7/10 lg:w-1/2  h-fit flex flex-col p-8 gap-2 sm:gap-1 bg-white rounded-l-xl rounded-tr-xl rounded-br-[6rem]">
             <div className="flex flex-row gap-1 sm:w-7/10 w-full sm:p-0 p-4">
                 <div className="flex flex-col w-1/3">
                     <Input id="dia" label="Dia" max={31} min={1}/>
