@@ -23,6 +23,7 @@ export default function Frame(){
         setErroAno({"state": false, "message": ""})
         setErroMes({"state": false, "message": ""})
         setErroDia({"state": false, "message": ""})
+        setErroData({"state": false, "message": ""})
 
         if (ano === "" || mes === "" || dia === "") {
             if (dia === "") {
@@ -44,15 +45,22 @@ export default function Frame(){
             }
         }
         
-        const data = new Date(ano, mes - 1, dia);
-        if (!(data.getFullYear() === ano && data.getMonth() === mes - 1 && data.getDay() === dia))
+        const meses = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        const meses_bisextos = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        if (ano % 4 === 0 && (ano % 100 !== 0 || ano % 400 === 0)) {
+            if (dia > meses_bisextos[mes - 1]) {
+                erros.data = {"state": true, "message": "Insira uma data válida"}   
+            }
+        } else if (dia > meses[mes - 1]) {
             erros.data = {"state": true, "message": "Insira uma data válida"}   
+        }
 
         if (erros.ano.state || erros.mes.state || erros.dia.state || erros.data.state) {
             setErroAno(erros.ano)
             setErroMes(erros.mes)
             setErroDia(erros.dia)
             setErroData(erros.data)
+            setData({dia: 0, mes: 0, ano: 0})
         } else {
     
             let anos = currentData.getFullYear() - ano;
@@ -75,7 +83,6 @@ export default function Frame(){
                 ano: anos
             })
         }
-
     }
     return (
         <div className="w-9/10 sm:w-1/2 h-fit flex flex-col p-8 gap-2 sm:gap-1 bg-white rounded-l-xl rounded-tr-xl rounded-br-[6rem]">
